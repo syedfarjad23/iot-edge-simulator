@@ -21,3 +21,26 @@ venv/
 *.exe
 .env
 mosquitto-testing
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.backup
+*.log
+crash.log
+
+# Terraform Provider Binaries (prevents .exe or large files)
+terraform/.terraform/providers/**/terraform-provider-*
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# Logs and temp
+*.log
+*.tmp
+*.swp
+*.exe

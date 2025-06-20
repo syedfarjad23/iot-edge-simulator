@@ -10,7 +10,8 @@ export const connectMQTT = () => {
     protocolVersion: 4,
   };
 
-  const client = mqtt.connect('ws://localhost:9001', options);
+  // const client = mqtt.connect('ws://localhost:9001', options);
+  const client = mqtt.connect(import.meta.env.VITE_MQTT_WS_URL, options);
 
   // Optional event listeners for debugging:
   client.on('connect', () => {

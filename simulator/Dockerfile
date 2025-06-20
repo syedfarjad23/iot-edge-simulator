@@ -9,10 +9,8 @@ COPY ../requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy simulator code into container
-COPY ../simulator ./simulator
+COPY . .
 
-# Set environment variables (optional)
-ENV PYTHONUNBUFFERED=1
 
 # Run the simulator script
-CMD ["python", "-m", "simulator.simulator"]
+CMD ["python", "main.py"]

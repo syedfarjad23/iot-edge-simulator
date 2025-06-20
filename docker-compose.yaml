@@ -7,6 +7,8 @@ services:
     ports:
       - "1883:1883"       # MQTT TCP
       - "9001:9001"       # MQTT WebSocket
+    environment:
+      VITE_MQTT_WS_URL: ${VITE_MQTT_WS_URL}
     volumes:
       - ./cloud/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
       - ./cloud/mosquitto.passwd:/mosquitto/config/mosquitto.passwd:ro
@@ -26,7 +28,7 @@ services:
 
   dashboard:
     build:
-      context: ./react-dashboard
+      context: ./react-dashboard/react-dashboard
     container_name: react-dashboard
     depends_on:
       - mosquitto

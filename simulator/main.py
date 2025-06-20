@@ -1,7 +1,7 @@
 import time
 import random
 from datetime import datetime
-from simulator.mqtt_client import MQTTClient
+from mqtt_client import MQTTClient
 
 def generate_temperature():
     return round(random.uniform(20.0, 80.0), 2)
