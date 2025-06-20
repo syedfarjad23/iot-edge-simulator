@@ -1,0 +1,44 @@
+cd "C:\Program Files\mosquitto"
+ls  # Should see mosquitto.exe, mosquitto_passwd.exe, etc.
+
+
+# Create password file in your user directory first (avoids permission issues)
+cd $env:USERPROFILE
+mosquitto_passwd -c mosquitto_pw.txt app_user
+# Enter password twice when prompted
+
+# Now move it to Mosquitto directory
+Move-Item -Path .\mosquitto_pw.txt -Destination "C:\Program Files\mosquitto\pwfile.txt" -Force
+
+
+notepad "C:\Program Files\mosquitto\mosquitto.conf"
+
+listener 1883
+allow_anonymous false
+password_file C:/Program Files/mosquitto/pwfile.txt
+log_dest file C:/Program Files/mosquitto/mosquitto.log
+log_type all
+
+# Grant service account access
+icacls "C:\Program Files\mosquitto\pwfile.txt" /grant "NT AUTHORITY\LOCAL SERVICE:R"
+icacls "C:\Program Files\mosquitto\mosquitto.conf" /grant "NT AUTHORITY\LOCAL SERVICE:R"
+icacls "C:\Program Files\mosquitto\mosquitto.log" /grant "NT AUTHORITY\LOCAL SERVICE:RW"
+
+
+# Uninstall if exists
+.\mosquitto.exe --uninstall 2>$null
+
+# Install fresh
+.\mosquitto.exe --install -c "C:\Program Files\mosquitto\mosquitto.conf"
+
+# Start service
+Start-Service mosquitto
+
+
+Get-Service mosquitto | Select-Object Status, StartType
+
+# Terminal 1 (Subscriber)
+.\mosquitto_sub -t "test" -u "app_user" -P "your_password" -v
+
+# Terminal 2 (Publisher)
+.\mosquitto_pub -t "test" -m "hello" -u "app_user" -P "your_password"

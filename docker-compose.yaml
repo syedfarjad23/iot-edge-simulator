@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2.0
+    container_name: mosquitto
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./cloud/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - ./cloud/mosquitto.passwd:/mosquitto/config/mosquitto.passwd:ro
+
+  iot-edge-simulator:
+    image: iot-edge-simulator:1.0.1
+    container_name: iot-edge-simulator
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    depends_on:
+      - mosquitto
+    environment:
+    environment:
+      MQTT_BROKER_URL: ${MQTT_BROKER_URL}
+      MQTT_BROKER_PORT: ${MQTT_BROKER_PORT}
+      MQTT_TOPIC: ${MQTT_TOPIC}
+      MQTT_USERNAME: ${MQTT_USERNAME}
+      MQTT_PASSWORD: ${MQTT_PASSWORD}
+    restart: unless-stopped
