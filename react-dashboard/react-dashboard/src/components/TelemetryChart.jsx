@@ -1,16 +1,44 @@
 import React from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from 'recharts';
+
+const ChartPanel = ({ title, dataKey, color, data }) => (
+  <div style={{ marginBottom: '2rem' }}>
+    <h4 style={{ marginBottom: '0.5rem' }}>{title}</h4>
+    <ResponsiveContainer width="100%" height={250}>
+      <LineChart data={data}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="timestamp" />
+        <YAxis domain={['auto', 'auto']} />
+        <Tooltip />
+        <Line type="monotone" dataKey={dataKey} stroke={color} dot={false} />
+      </LineChart>
+    </ResponsiveContainer>
+  </div>
+);
 
 const TelemetryChart = ({ data }) => (
-  <LineChart width={800} height={300} data={data}>
-    <CartesianGrid strokeDasharray="3 3" />
-    <XAxis dataKey="timestamp" />
-    <YAxis />
-    <Tooltip />
-    <Legend />
-    <Line type="monotone" dataKey="temperature" stroke="#8884d8" />
-    <Line type="monotone" dataKey="vibration" stroke="#82ca9d" />
-  </LineChart>
+  <div>
+    <ChartPanel
+      title="🌡️ Temperature (°C)"
+      dataKey="temperature"
+      color="#ff7300"
+      data={data}
+    />
+    <ChartPanel
+      title="🛠️ Vibration (Hz)"
+      dataKey="vibration"
+      color="#0088FE"
+      data={data}
+    />
+  </div>
 );
 
 export default TelemetryChart;
