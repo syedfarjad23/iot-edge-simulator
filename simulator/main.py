@@ -7,7 +7,7 @@ import requests
 
 # 🚨 Load Telegram credentials from environment variables
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN","addyourtoken:addyourtoken")
-TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID","your uid of account telegram")
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID","your uid of account")
 
 # 📩 Function to send alerts to Telegram
 def send_telegram_alert(message):
