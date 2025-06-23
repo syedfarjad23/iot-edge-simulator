@@ -6,8 +6,8 @@ from mqtt_client import MQTTClient
 import requests
 
 # 🚨 Load Telegram credentials from environment variables
-TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN","7548930659:AAFjSTqt5ImqCUXUalLvLVh3XqU05t1uc80")
-TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID","7747742789")
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN","addyourtoken:addyourtoken")
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID","your uid of account telegram")
 
 # 📩 Function to send alerts to Telegram
 def send_telegram_alert(message):
