@@ -11,7 +11,7 @@ dist/
 # Virtual environment
 venv/
 .env/
-
+iot-edge-simulator/
 # Logs
 *.log
 
