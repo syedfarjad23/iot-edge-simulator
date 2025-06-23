@@ -113,13 +113,12 @@ docker-compose up --build
 
 ## 📊 Dashboard Preview
 
-> Replace this with your screenshot:
-> `docs/dash_1.png`
-> `docs/dash_2.png`
-> `docs/dash_3.png`
+
+docs/dash_1.png
+docs/dash_2.png
+docs/dash_3.png
 
 ```
-🖼️ [Dashboard Screenshot Placeholder]
 ```
 
 ---
