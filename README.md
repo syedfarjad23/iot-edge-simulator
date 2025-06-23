@@ -113,10 +113,9 @@ docker-compose up --build
 
 ## 📊 Dashboard Preview
 
-
-docs/dash_1.png
-docs/dash_2.png
-docs/dash_3.png
+![Dashboard](docs/dash_1.png)
+![Dashboard](docs/dash_2.png)
+![Dashboard](docs/dash_3.png)
 
 ```
 ```
